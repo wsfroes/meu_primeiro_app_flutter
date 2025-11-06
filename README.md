@@ -2,30 +2,6 @@
 Ambiente de desenvolvimento mobile nativo.
 
 # App Analisador de Texto (estrutura)
-lib/
-
-├── main.dart                    # Apenas inicialização
-
-├── screens/
-
-   └── text_analyzer_screen.dart   # Tela principal
-
-├── widgets/
-
-   ├── action_buttons.dart         # Botões Analisar/Limpar
-
-   ├── metric_card.dart            # Cards de métricas
-
-   ├── summary_cards.dart          # Resumo completo
-
-   └── word_frequency_list.dart    # Lista de palavras
-
-├── models/
-
-   └── text_analysis.dart          # Modelo de dados
-
-└── services/
-
-    └── text_analyzer_service.dart  # Lógicas de análise
+<img width="520" height="307" alt="image" src="https://github.com/user-attachments/assets/5fc9ad87-39b6-4d2e-afba-0224b2583335" />
 
 ############################################################
