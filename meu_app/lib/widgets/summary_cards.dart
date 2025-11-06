@@ -19,29 +19,6 @@ class SummaryCards extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 16.0),
-
-        // Barra de Título "Resumo da Análise"
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(vertical: 12.0),
-          decoration: BoxDecoration(
-            color: Colors.teal.shade50,
-            borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(color: Colors.teal.shade200, width: 1.0),
-          ),
-          child: const Center(
-            child: Text(
-              'Resumo da Análise',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.teal,
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 16.0),
-
         // Grupo de Cards
         Column(
           children: [
@@ -69,9 +46,7 @@ class SummaryCards extends StatelessWidget {
                 ),
               ],
             ),
-
             const SizedBox(height: 16.0),
-            
             // LINHA INFERIOR (2 Cards Maiores)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

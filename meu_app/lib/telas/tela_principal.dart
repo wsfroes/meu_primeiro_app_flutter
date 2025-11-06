@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'tela_resultado.dart';
 import '../models/text_analysis.dart';
 import '../services/text_analyzer_service.dart';
 import '../widgets/action_buttons.dart';
-import '../widgets/summary_cards.dart';
-import '../widgets/word_frequency_list.dart';
+//import '../widgets/summary_cards.dart';
+//import '../widgets/word_frequency_list.dart';
 
 class TelaPrincipal extends StatefulWidget {
   const TelaPrincipal({super.key});
@@ -38,10 +39,22 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
       return;
     }
 
+    // 1. Calcula a análise (fora do setState)
+    final TextAnalysis analysisResult = _analyzerService.analyzeText(text);
+
+    // 2. Limpa o estado da tela principal (opcional, mas bom)
     setState(() {
-      _analysis = _analyzerService.analyzeText(text);
-      _showResults = true;
+      _analysis = analysisResult;
+      _showResults = false; // Não mostramos mais aqui
     });
+
+    // 3. NAVEGA para a nova tela, passando os resultados
+    var push = Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TelaResultados(analysis: analysisResult),
+      ),
+    );
   }
 
   // Limpa o texto e resultados
@@ -54,7 +67,6 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   void _clearResults() {
     setState(() {
       _analysis = TextAnalysis.empty();
-      _showResults = false;
     });
   }
 
@@ -114,7 +126,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: Stack(
           children: [
             Positioned(
@@ -139,10 +151,33 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             ),
           ],
         ),
-        centerTitle: true,
-        backgroundColor: Colors.teal.shade700,
         elevation: 20,
         shadowColor: Colors.black,
+      ),*/
+      appBar: AppBar(
+        title: const Text('Analisador de Texto'),
+        centerTitle: true,
+        backgroundColor: Colors.teal.shade700,
+        foregroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // TextField
+              _buildTextField(),
+              const SizedBox(height: 16.0),
+
+              // Botões
+              ActionButtons(
+                onAnalyze: _analyzeText,
+                onClear: _handleClearButton,
+              ),
+            ],
+          ),
+        ),
       ),
       bottomNavigationBar: Container(
         height: 40.0,
@@ -165,33 +200,6 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // TextField
-              _buildTextField(),
-              const SizedBox(height: 16.0),
-
-              // Botões
-              ActionButtons(
-                onAnalyze: _analyzeText,
-                onClear: _handleClearButton,
-              ),
-
-              // Resultados
-              if (_showResults) ...[
-                SummaryCards(analysis: _analysis),
-                const SizedBox(height: 32.0),
-                const Divider(),
-                WordFrequencyList(wordFrequency: _analysis.wordFrequency),
-              ],
-            ],
           ),
         ),
       ),
