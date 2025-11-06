@@ -1,7 +1,7 @@
 # meu_primeiro_app_flutter
 Ambiente de desenvolvimento mobile nativo.
 
-App Analisador de Texto (estrutura)
+#App Analisador de Texto (estrutura)
 lib/
 ├── main.dart                    # Apenas inicialização
 ├── screens/
@@ -15,3 +15,5 @@ lib/
 │   └── text_analysis.dart          # Modelo de dados
 └── services/
     └── text_analyzer_service.dart  # Lógicas de análise
+
+############################################################
