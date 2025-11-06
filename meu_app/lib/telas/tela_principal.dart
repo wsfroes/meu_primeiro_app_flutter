@@ -126,34 +126,6 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*appBar: AppBar(
-        title: Stack(
-          children: [
-            Positioned(
-              top: 2.0,
-              left: 2.0,
-              child: Text(
-                'Analisador de Texto',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withAlpha(128),
-                ),
-              ),
-            ),
-            const Text(
-              'Analisador de Texto',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-        elevation: 20,
-        shadowColor: Colors.black,
-      ),*/
       appBar: AppBar(
         title: const Text('Analisador de Texto'),
         centerTitle: true,
@@ -162,13 +134,13 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(32.0),
+          padding: const EdgeInsets.symmetric(vertical: 26.0, horizontal: 38.0 ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // TextField
               _buildTextField(),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 32.0),
 
               // Botões
               ActionButtons(
